@@ -172,7 +172,7 @@ int main() {
 
     // Saída da Carta 2
     printf("Carta 2:\n");
-    printf("Estado: %s\n", Estado1);
+    printf("Estado: %s\n", Estado2);
     printf("Código: %s\n", codigodacarta2);
     printf("Nome da Cidade: %s\n", nomedacidade2);
     printf("População: %d\n", populaçao2);
