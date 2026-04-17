@@ -20,7 +20,9 @@ int main() {
     float pibpercapita1, pibpercapita2, densidadepopulacional1, densidadepopulacional2;
     float superpoder1= populaçao1+pib1+numerodepontosturisticos1+1/densidadepopulacional1+pibpercapita1;
     float superpoder2= populaçao2+pib2+numerodepontosturisticos2+1/densidadepopulacional2+pibpercapita2;
-    
+    int atributo1, atributo2;
+    float valor1A, valor2A, valor1B, valor2B, soma1, soma2;
+
     densidadepopulacional1 = (float)populaçao1/area1;
     pibpercapita1 = (float)pib1/populaçao1;
 
@@ -159,7 +161,7 @@ int main() {
                 printf("Empate!\n");
             break;
 
-        case 5: // regra invertida
+        case 5: 
             if (densidadepopulacional1 < densidadepopulacional2)
                 printf("Vencedor: %s com densidade %.2f\n", Estado1, densidadepopulacional1);
             else if (densidadepopulacional1 > densidadepopulacional2)
@@ -189,8 +191,108 @@ int main() {
         default:
             printf("Opção inválida!\n");
     }
-    
-    
+
+    printf("\n");
+
+
+    // Menu de atributos
+    printf("\n--- Comparação Avançada ---\n");
+    printf("Escolha o primeiro atributo:\n");
+    printf("1. População\n");
+    printf("2. Área\n");
+    printf("3. PIB\n");
+    printf("4. Pontos Turísticos\n");
+    printf("5. Densidade Populacional\n");
+    printf("6. PIB per capita\n");
+    printf("7. Superpoder\n");
+    scanf("%d", &atributo1);
+
+    printf("\nEscolha o segundo atributo (diferente do primeiro):\n");
+    scanf("%d", &atributo2);
+
+    if (atributo1 == atributo2) {
+        printf("Você não pode escolher o mesmo atributo duas vezes!\n");
+        return 0;
+    }
+
+    // Pegar valores do primeiro atributo
+    switch (atributo1) {
+        case 1: valor1A = populaçao1; 
+                valor2A = populaçao2;
+         break;
+        case 2: valor1A = area1; 
+                valor2A = area2; 
+        break;
+        case 3: valor1A = pib1; 
+                valor2A = pib2; 
+        break;
+        case 4: valor1A = numerodepontosturisticos1; 
+                valor2A = numerodepontosturisticos2; 
+        break;
+        case 5: valor1A = densidadepopulacional1; 
+                valor2A = densidadepopulacional2; 
+        break;
+        case 6: valor1A = pibpercapita1; 
+                valor2A = pibpercapita2; 
+        break;
+        case 7: valor1A = superpoder1; 
+                valor2A = superpoder2; 
+        break;
+
+        default: printf("Opção inválida!\n"); 
+        
+        return 0;
+    }
+
+    // Pegar valores do segundo atributo
+    switch (atributo2) {
+        case 1: valor1B = populaçao1; 
+                valor2B = populaçao2; 
+        break;
+        case 2: valor1B = area1; 
+                valor2B = area2; 
+        break;
+        case 3: valor1B = pib1; 
+                valor2B = pib2; 
+        break;
+        case 4: valor1B = numerodepontosturisticos1; 
+                valor2B = numerodepontosturisticos2; 
+        break;
+        case 5: valor1B = densidadepopulacional1; 
+                valor2B = densidadepopulacional2; 
+        break;
+        case 6: valor1B = pibpercapita1; 
+                valor2B = pibpercapita2; 
+        break;
+        case 7: valor1B = superpoder1; 
+                valor2B = superpoder2; 
+        break;
+        default: printf("Opção inválida!\n"); 
+        
+        return 0; 
+    }
+
+    // Soma dos atributos
+    soma1 = valor1A + valor1B;
+    soma2 = valor2A + valor2B;
+
+    // Exibição dos resultados
+    printf("\n--- Resultado ---\n");
+    printf("%s: %.2f + %.2f = %.2f\n", nomedacidade1, valor1A, valor1B, soma1);
+    printf("%s: %.2f + %.2f = %.2f\n", nomedacidade2, valor2A, valor2B, soma2);
+
+    // Comparação final com regra especial da densidade
+    if ((atributo1 == 5 && valor1A < valor2A) || (atributo2 == 5 && valor1B < valor2B)) {
+        printf("Vencedor: %s (menor densidade populacional)\n", nomedacidade1);
+    } else if ((atributo1 == 5 && valor2A < valor1A) || (atributo2 == 5 && valor2B < valor1B)) {
+        printf("Vencedor: %s (menor densidade populacional)\n", nomedacidade2);
+    } else if (soma1 > soma2) {
+        printf("Vencedor: %s\n", nomedacidade1);
+    } else if (soma2 > soma1) {
+        printf("Vencedor: %s\n", nomedacidade2);
+    } else {
+        printf("Empate!\n");
+    }
 
     printf("\n");
 
